@@ -6,7 +6,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
@@ -15,7 +14,11 @@ import java.util.List;
 @ToString
 @Builder
 @Entity
-public class Author {
+public class Txn {
+
+    //Constraint - In one transaction, user can take only one book
+    // A book can have many transactions.
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -26,13 +29,16 @@ public class Author {
     @UpdateTimestamp
     private Date updatedOn;
 
-    @OneToMany(mappedBy = "author")
-    private List<Book> bookList;
+    private String txnId;
 
-    @Column(unique = true, length = 50, nullable = false)
-    private String email;
+    @ManyToOne
+    @JoinColumn
+    private User user;
 
-    @Column(length = 30)
-    private String name;
+    @ManyToOne
+    @JoinColumn
+    private Book book;
 
+    @Enumerated
+    private TxnStatus txnStatus;
 }

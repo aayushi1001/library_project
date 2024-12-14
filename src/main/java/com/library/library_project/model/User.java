@@ -47,4 +47,7 @@ public class User {
     // you need to create a many to one relationship in the other class also.
     @OneToMany(mappedBy = "user")
     private List<Book> bookList;
+
+    @OneToMany(mappedBy = "user")
+    private List<Txn> txnList;
 }

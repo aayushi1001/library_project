@@ -7,6 +7,7 @@ import org.hibernate.annotations.SourceType;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -41,4 +42,11 @@ public class Book {
     @ManyToOne
     @JoinColumn // it will create a foreign key and will store the @Id marked value
     private User user;
+
+    @ManyToOne
+    @JoinColumn
+    private Author author;
+
+    @OneToMany(mappedBy = "book")
+    private List<Txn> txnList;
 }
