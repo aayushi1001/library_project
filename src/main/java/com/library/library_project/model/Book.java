@@ -49,4 +49,6 @@ public class Book {
 
     @OneToMany(mappedBy = "book")
     private List<Txn> txnList;
+
+    private Integer securityAmount;
 }
