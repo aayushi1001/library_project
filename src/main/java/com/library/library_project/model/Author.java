@@ -1,5 +1,6 @@
 package com.library.library_project.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -27,6 +28,7 @@ public class Author {
     private Date updatedOn;
 
     @OneToMany(mappedBy = "author")
+    @JsonIgnoreProperties(value = "author")
     private List<Book> bookList;
 
     @Column(unique = true, length = 50, nullable = false)

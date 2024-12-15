@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 public interface AuthorRepository extends JpaRepository<Author, Integer> {
 
     //native query - simple SQL
-    @Query(value = "Select * from author where email = :email", nativeQuery = true)
+    @Query(value = "Select * from author where email =:email", nativeQuery = true)
     Author getAuthorByEmail(String email);
 }
