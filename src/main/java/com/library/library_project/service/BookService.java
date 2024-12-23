@@ -44,8 +44,17 @@ public class BookService {
                     case LIKE -> bookRepository.findByTitleContaining(value);
                     default -> new ArrayList<>();
                 };
+            case BOOK_NO:
+                return switch (operator) {
+                    case EQUALS -> bookRepository.findByBookNo(value);
+                    default -> new ArrayList<>();
+                };
             default: new ArrayList<>();
         }
         return new ArrayList<>();
+    }
+
+    public void updateBookData(Book book) {
+        bookRepository.save(book);
     }
 }

@@ -18,4 +18,8 @@ public class UserService {
         user.setUserType(UserType.STUDENT);
         return userRepository.save(user);
     }
+
+    public User getStudentByPhoneNo(String userPhoneNo) {
+        return userRepository.findByPhoneNoAndUserType(userPhoneNo, UserType.STUDENT);
+    }
 }
